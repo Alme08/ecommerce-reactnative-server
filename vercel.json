@@ -1,1 +1,1 @@
-{"version": 2, "functions": {"api": {"entry": "server.js"}}, "rewrites": {"source":"/(.*)", "function": "api"}}
+{"version": 2, "rewrites": {"source":"/(.*)", "destination": "server.js"}}
