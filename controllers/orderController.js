@@ -1,6 +1,6 @@
 import orderModel from '../models/orderModel.js';
 import productModel from '../models/productModel.js';
-import { stripe } from '../index.js';
+import { stripe } from '../server.js';
 
 // CREATE ORDER
 export const createOrderController = async (req, res) => {
