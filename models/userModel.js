@@ -37,9 +37,12 @@ const userSchema = new mongoose.Schema(
 		profilePic: {
 			public_id: {
 				type: String,
+				default: '149071_cskhjj',
 			},
 			url: {
 				type: String,
+				default:
+					'https://res.cloudinary.com/djanluujt/image/upload/v1715559800/149071_cskhjj.png',
 			},
 		},
 		answer: {
