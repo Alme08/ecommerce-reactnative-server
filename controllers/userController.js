@@ -225,7 +225,7 @@ export const updateProfilePicController = async (req, res) => {
 	try {
 		const user = await userModel.findById(req.user._id);
 		//get file
-		const file = getDataUri(req.body);
+		const file = getDataUri(req.file);
 		//delete prev image
 		if (user.profilePic.public_id !== '149071_cskhjj') {
 			await cloudinary.v2.uploader.destroy(user.profilePic.public_id);
