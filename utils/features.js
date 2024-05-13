@@ -4,6 +4,8 @@ import path from 'path';
 export const getDataUri = file => {
 	const parser = new DataURIParser();
 	const extName = path.extname(file.fileName).toString();
+	console.log('extName', extName);
+	console.log(parser.format(extName, file.buffer));
 	return parser.format(extName, file.buffer);
 };
 
