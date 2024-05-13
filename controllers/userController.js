@@ -225,7 +225,7 @@ export const updateProfilePicController = async (req, res) => {
 	try {
 		const user = await userModel.findById(req.user._id);
 		//get file
-		console.log(req.file);
+		console.log(req);
 		const file = getDataUri(req.file);
 		//delete prev image
 		if (user.profilePic.public_id !== '149071_cskhjj') {
