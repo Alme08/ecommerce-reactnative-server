@@ -44,7 +44,7 @@ router.put('/profile-update', isAuth, updateProfileController);
 router.put('/update-password', isAuth, updatePasswordController);
 
 //update profile pic
-router.put(
+router.post(
 	'/update-profile-pic',
 	isAuth,
 	singleUpload,
