@@ -226,13 +226,12 @@ export const updateProfilePicController = async (req, res) => {
 		const user = await userModel.findById(req.user._id);
 		//get file
 		const file = getDataUri(req.file);
-		console.log(file);
 		//delete prev image
 		if (user.profilePic.public_id !== '149071_cskhjj') {
 			await cloudinary.v2.uploader.destroy(user.profilePic.public_id);
 		}
 		//upload new image
-		const cdb = await cloudinary.v2.uploader.upload(file.content);
+		const cdb = await cloudinary.v2.uploader.upload(file);
 		user.profilePic = {
 			public_id: cdb.public_id,
 			url: cdb.secure_url,
