@@ -5,5 +5,5 @@ export const getDataUri = file => {
 	// const parser = new DataURIParser();
 	// const extName = path.extname(file.originalname).toString();
 	// return parser.format(extName, file.buffer);
-	return `data:${file.mimetype};base64,${file.base64}`;
+	return `data:${file.mimeType};base64,${file.base64}`;
 };
