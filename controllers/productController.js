@@ -96,7 +96,6 @@ export const getSingleProductController = async (req, res) => {
 // CREATE PRODUCT
 export const createProductController = async (req, res) => {
 	try {
-		console.log(req.boy, req.files);
 		const { name, description, price, stock, category } = req.body;
 		//validation
 		if (!name || !description || !price || !stock) {
@@ -105,34 +104,25 @@ export const createProductController = async (req, res) => {
 				message: 'Please fill all fields',
 			});
 		}
-		// if (!req.files) {
-		// 	return res.status(500).send({
-		// 		success: false,
-		// 		message: 'Please upload an image',
-		// 	});
-		// }
-		const filesUri = [];
-		req.files.forEach(file => {
-			uri = getDataUri(file);
-			filesUri.push(uri);
-		});
-		const images = [];
-		filesUri.forEach(async file => {
-			const cdb = await cloudinary.v2.uploader.upload(file.content);
-			const image = {
-				public_id: cdb.public_id,
-				url: cdb.secure_url,
-			};
-			images.push(image);
-		});
-
+		if (!req.file) {
+			return res.status(500).send({
+				success: false,
+				message: 'Please upload an image',
+			});
+		}
+		const file = getDataUri(req.file);
+		const cdb = await cloudinary.v2.uploader.upload(file.content);
+		const image = {
+			public_id: cdb.public_id,
+			url: cdb.secure_url,
+		};
 		await productModel.create({
 			name,
 			description,
 			price,
 			category,
 			stock,
-			images: images,
+			images: [image],
 		});
 		res.status(201).send({
 			success: true,
