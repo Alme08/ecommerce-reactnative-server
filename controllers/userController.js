@@ -144,7 +144,7 @@ export const getAllUsersController = async (req, res) => {
 		res.status(200).send({
 			success: true,
 			message: 'All users fetched successfully',
-			totalProducts: users.length,
+			totalUsers: users.length,
 			users,
 		});
 	} catch (error) {

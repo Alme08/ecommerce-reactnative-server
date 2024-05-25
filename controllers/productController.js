@@ -104,25 +104,34 @@ export const createProductController = async (req, res) => {
 				message: 'Please fill all fields',
 			});
 		}
-		if (!req.file) {
+		if (!req.files) {
 			return res.status(500).send({
 				success: false,
 				message: 'Please upload an image',
 			});
 		}
-		const file = getDataUri(req.file);
-		const cdb = await cloudinary.v2.uploader.upload(file.content);
-		const image = {
-			public_id: cdb.public_id,
-			url: cdb.secure_url,
-		};
+		const filesUri = [];
+		req.files.forEach(file => {
+			uri = getDataUri(file);
+			filesUri.push(uri);
+		});
+		const images = [];
+		filesUri.forEach(async file => {
+			const cdb = await cloudinary.v2.uploader.upload(file.content);
+			const image = {
+				public_id: cdb.public_id,
+				url: cdb.secure_url,
+			};
+			images.push(image);
+		});
+
 		await productModel.create({
 			name,
 			description,
 			price,
 			category,
 			stock,
-			images: [image],
+			images: images,
 		});
 		res.status(201).send({
 			success: true,
