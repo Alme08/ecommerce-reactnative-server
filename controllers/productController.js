@@ -96,6 +96,7 @@ export const getSingleProductController = async (req, res) => {
 // CREATE PRODUCT
 export const createProductController = async (req, res) => {
 	try {
+		console.log(req.boy, req.files);
 		const { name, description, price, stock, category } = req.body;
 		//validation
 		if (!name || !description || !price || !stock) {
@@ -104,12 +105,12 @@ export const createProductController = async (req, res) => {
 				message: 'Please fill all fields',
 			});
 		}
-		if (!req.files) {
-			return res.status(500).send({
-				success: false,
-				message: 'Please upload an image',
-			});
-		}
+		// if (!req.files) {
+		// 	return res.status(500).send({
+		// 		success: false,
+		// 		message: 'Please upload an image',
+		// 	});
+		// }
 		const filesUri = [];
 		req.files.forEach(file => {
 			uri = getDataUri(file);
