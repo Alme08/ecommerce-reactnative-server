@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+	getAllUsersController,
 	getUserProfileController,
 	loginController,
 	logoutController,
@@ -33,6 +34,9 @@ router.post('/login', limiter, loginController);
 
 //profile
 router.get('/profile', isAuth, getUserProfileController);
+
+//get all users
+router.get('/get-all', isAuth, getAllUsersController);
 
 //logout
 router.get('/logout', logoutController);

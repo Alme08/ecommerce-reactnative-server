@@ -129,6 +129,34 @@ export const getUserProfileController = async (req, res) => {
 	}
 };
 
+//GET ALL USERS
+
+export const getAllUsersController = async (req, res) => {
+	const { keyword } = req.query;
+	try {
+		let users;
+		users = await userModel.find({
+			name: {
+				$regex: keyword ? keyword : '',
+				$options: 'i',
+			},
+		});
+		res.status(200).send({
+			success: true,
+			message: 'All users fetched successfully',
+			totalProducts: users.length,
+			users,
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).send({
+			success: false,
+			message: 'Error in getting all users API',
+			error,
+		});
+	}
+};
+
 // LOGOUT
 export const logoutController = async (req, res) => {
 	try {
