@@ -96,7 +96,7 @@ export const getSingleProductController = async (req, res) => {
 // CREATE PRODUCT
 export const createProductController = async (req, res) => {
 	try {
-		// console.log(req.body.formData, req.body.file);
+		console.log(req.body.formData, req.body.file);
 		const { name, description, price, stock, category } = req.body;
 		//validation
 		if (!name || !description || !price || !stock) {
