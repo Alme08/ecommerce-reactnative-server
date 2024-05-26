@@ -130,7 +130,7 @@ export const createProductController = async (req, res) => {
 			message: 'Product created successfully',
 		});
 	} catch (error) {
-		console.log(error);
+		console.log('error: ' + error);
 		res.status(500).send({
 			success: false,
 			message: 'Error in creating product API',
