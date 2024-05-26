@@ -44,10 +44,10 @@ const productSchema = new mongoose.Schema(
 			type: Number,
 			required: [true, 'Product stock is required'],
 		},
-		// quantity: {
-		// 	type: Number,
-		// 	required: [true, 'Product quantity is required'],
-		// },
+		active: {
+			type: Boolean,
+			default: true,
+		},
 		category: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Category',

@@ -106,26 +106,26 @@ export const createProductController = async (req, res) => {
 				message: 'Please fill all fields',
 			});
 		}
-		if (!req.file) {
-			console.log('o aqui');
-			return res.status(500).send({
-				success: false,
-				message: 'Please upload an image',
-			});
-		}
-		const file = getDataUri(req.file);
-		const cdb = await cloudinary.v2.uploader.upload(file.content);
-		const image = {
-			public_id: cdb.public_id,
-			url: cdb.secure_url,
-		};
+		// if (!req.file) {
+		// 	console.log('o aqui');
+		// 	return res.status(500).send({
+		// 		success: false,
+		// 		message: 'Please upload an image',
+		// 	});
+		// }
+		// const file = getDataUri(req.file);
+		// const cdb = await cloudinary.v2.uploader.upload(file.content);
+		// const image = {
+		// 	public_id: cdb.public_id,
+		// 	url: cdb.secure_url,
+		// };
 		await productModel.create({
 			name,
 			description,
 			price,
 			category,
 			stock,
-			images: [image],
+			// images: [image],
 		});
 		res.status(201).send({
 			success: true,
