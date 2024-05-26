@@ -130,6 +130,7 @@ export const createProductController = async (req, res) => {
 		res.status(201).send({
 			success: true,
 			message: 'Product created successfully',
+			productId: product._id,
 		});
 	} catch (error) {
 		console.log(error);
