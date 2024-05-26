@@ -119,7 +119,7 @@ export const createProductController = async (req, res) => {
 		// 	public_id: cdb.public_id,
 		// 	url: cdb.secure_url,
 		// };
-		await productModel.create({
+		const product = await productModel.create({
 			name,
 			description,
 			price,
