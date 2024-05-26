@@ -96,16 +96,18 @@ export const getSingleProductController = async (req, res) => {
 // CREATE PRODUCT
 export const createProductController = async (req, res) => {
 	try {
-		// console.log(req.body, req.file);
+		console.log(req.body.formData, req.body.file);
 		const { name, description, price, stock, category } = req.body.formData;
 		//validation
 		if (!name || !description || !price || !stock) {
+			console.log('aqui');
 			return res.status(500).send({
 				success: false,
 				message: 'Please fill all fields',
 			});
 		}
 		if (!req.body.file) {
+			console.log('o aqui');
 			return res.status(500).send({
 				success: false,
 				message: 'Please upload an image',
@@ -130,7 +132,7 @@ export const createProductController = async (req, res) => {
 			message: 'Product created successfully',
 		});
 	} catch (error) {
-		console.log('error: ' + error);
+		console.log(error);
 		res.status(500).send({
 			success: false,
 			message: 'Error in creating product API',
