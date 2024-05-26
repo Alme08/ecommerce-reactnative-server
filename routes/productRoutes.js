@@ -26,7 +26,7 @@ router.get('/top', getTopProductsController);
 router.get('/:id', getSingleProductController);
 
 // CREATE PRODUCT
-router.post('/create', isAuth, isAdmin, createProductController);
+router.post('/create', isAuth, isAdmin, singleUpload, createProductController);
 
 // UPDATE PRODUCT
 router.put('/:id', isAuth, isAdmin, updateProductController);
