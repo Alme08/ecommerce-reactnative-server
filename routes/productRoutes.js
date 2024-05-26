@@ -32,13 +32,7 @@ router.post('/create', isAuth, isAdmin, singleUpload, createProductController);
 router.put('/:id', isAuth, isAdmin, updateProductController);
 
 // UPDATE PRODUCT IMAGE
-router.put(
-	'/image/:id',
-	isAuth,
-	isAdmin,
-	singleUpload,
-	updateProductImageController
-);
+router.put('/image/:id', isAuth, isAdmin, updateProductImageController);
 
 // DELETE PRODUCT IMAGE
 router.delete(
