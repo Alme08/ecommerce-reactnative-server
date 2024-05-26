@@ -26,13 +26,19 @@ router.get('/top', getTopProductsController);
 router.get('/:id', getSingleProductController);
 
 // CREATE PRODUCT
-router.post('/create', isAuth, isAdmin, singleUpload, createProductController);
+router.post('/create', isAuth, isAdmin, createProductController);
 
 // UPDATE PRODUCT
 router.put('/:id', isAuth, isAdmin, updateProductController);
 
 // UPDATE PRODUCT IMAGE
-router.put('/image/:id', isAuth, isAdmin, updateProductImageController);
+router.put(
+	'/image/:id',
+	isAuth,
+	isAdmin,
+	singleUpload,
+	updateProductImageController
+);
 
 // DELETE PRODUCT IMAGE
 router.delete(
