@@ -97,7 +97,7 @@ export const getSingleProductController = async (req, res) => {
 export const createProductController = async (req, res) => {
 	try {
 		console.log(req.body, req.file);
-		const { name, description, price, stock, category } = req.body;
+		const { name, description, price, stock, category } = req.body.formData;
 		//validation
 		if (!name || !description || !price || !stock) {
 			return res.status(500).send({
@@ -105,13 +105,13 @@ export const createProductController = async (req, res) => {
 				message: 'Please fill all fields',
 			});
 		}
-		if (!req.file) {
+		if (!req.body.file) {
 			return res.status(500).send({
 				success: false,
 				message: 'Please upload an image',
 			});
 		}
-		const file = getDataUri(req.file);
+		const file = getDataUri(req.body.file);
 		const cdb = await cloudinary.v2.uploader.upload(file.content);
 		const image = {
 			public_id: cdb.public_id,
