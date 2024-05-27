@@ -96,7 +96,6 @@ export const getSingleProductController = async (req, res) => {
 // CREATE PRODUCT
 export const createProductController = async (req, res) => {
 	try {
-		console.log(req.body, req.file, req);
 		const { name, description, price, stock, category } = req.body;
 		//validation
 		if (!name || !description || !price || !stock) {
@@ -189,7 +188,7 @@ export const updateProductImageController = async (req, res) => {
 	try {
 		//find product
 		const product = await productModel.findById(req.params.id);
-		console.log(req.params, req.file);
+		console.log(req.file);
 		//validation
 		if (!product) {
 			console.log('product not found');
