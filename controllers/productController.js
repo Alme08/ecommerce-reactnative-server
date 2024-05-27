@@ -191,6 +191,7 @@ export const updateProductImageController = async (req, res) => {
 		const product = await productModel.findById(req.params.id);
 		//validation
 		if (!product) {
+			console.log('product not found');
 			return res.status(404).send({
 				success: false,
 				message: 'Product not found',
@@ -198,6 +199,7 @@ export const updateProductImageController = async (req, res) => {
 		}
 		//check file
 		if (!req.file) {
+			console.log('file not found');
 			return res.status(404).send({
 				success: false,
 				message: 'Please upload an image',
