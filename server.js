@@ -8,7 +8,7 @@ import cloudinary from 'cloudinary';
 import Stripe from 'stripe';
 import helmet from 'helmet';
 import mongoSanitize from 'express-mongo-sanitize';
-// import bodyParser from 'body-parser';
+import bodyParser from 'body-parser';
 
 //dot env config
 dotenv.config();
@@ -36,6 +36,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
+app.use(bodyParser.json({ limit: '50mb' }));
 // var bodyParser = require('body-parser');
 // app.use(bodyParser.json({ limit: '50mb' }));
 // app.use(
