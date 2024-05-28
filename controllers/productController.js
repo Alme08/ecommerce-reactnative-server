@@ -188,7 +188,6 @@ export const updateProductImageController = async (req, res) => {
 	try {
 		//find product
 		const product = await productModel.findById(req.params.id);
-		console.log(req.file);
 		//validation
 		if (!product) {
 			console.log('product not found');
