@@ -35,8 +35,8 @@ router.put('/:id', isAuth, isAdmin, updateProductController);
 router.post(
 	'/image/:id',
 	isAuth,
-	isAdmin,
 	singleUpload,
+	isAdmin,
 	updateProductImageController
 );
 
