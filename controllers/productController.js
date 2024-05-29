@@ -186,7 +186,7 @@ export const updateProductController = async (req, res) => {
 // UPDATE PRODUCT IMAGE
 export const updateProductImageController = async (req, res) => {
 	try {
-		console.log(req.file, req.body);
+		console.log(req.file, req);
 		//find product
 		const product = await productModel.findById(req.params.id);
 		//validation
