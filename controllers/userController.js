@@ -260,6 +260,7 @@ export const updateProfilePicController = async (req, res) => {
 			});
 		}
 		//get file
+		console.log(req.file);
 		const file = getDataUri(req.file);
 		//delete prev image
 		if (user.profilePic.public_id !== '149071_cskhjj') {
