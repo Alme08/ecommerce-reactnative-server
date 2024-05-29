@@ -267,7 +267,7 @@ export const updateProfilePicController = async (req, res) => {
 			await cloudinary.v2.uploader.destroy(user.profilePic.public_id);
 		}
 		//upload new image
-		const cdb = await cloudinary.v2.uploader.upload(file);
+		const cdb = await cloudinary.v2.uploader.upload(file.content);
 		user.profilePic = {
 			public_id: cdb.public_id,
 			url: cdb.secure_url,
