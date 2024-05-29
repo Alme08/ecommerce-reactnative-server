@@ -252,8 +252,15 @@ export const updatePasswordController = async (req, res) => {
 export const updateProfilePicController = async (req, res) => {
 	try {
 		const user = await userModel.findById(req.user._id);
+		if (!req.file) {
+			console.log('file not found');
+			return res.status(404).send({
+				success: false,
+				message: 'Please upload an image',
+			});
+		}
 		//get file
-		const file = getDataUri(req.body);
+		const file = getDataUri(req.file);
 		//delete prev image
 		if (user.profilePic.public_id !== '149071_cskhjj') {
 			await cloudinary.v2.uploader.destroy(user.profilePic.public_id);
