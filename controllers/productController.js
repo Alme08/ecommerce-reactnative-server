@@ -152,6 +152,7 @@ export const updateProductController = async (req, res) => {
 				message: 'Product not found',
 			});
 		}
+		console.log(req.body);
 		const { name, description, price, stock, category } = req.body;
 		//validate and update
 		if (name) product.name = name;
