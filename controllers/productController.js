@@ -243,6 +243,7 @@ export const deleteProductImageController = async (req, res) => {
 		const product = await productModel.findById(req.params.id);
 		//validation
 		if (!product) {
+			console.log('product not found');
 			return res.status(404).send({
 				success: false,
 				message: 'Product not found',
@@ -251,6 +252,7 @@ export const deleteProductImageController = async (req, res) => {
 		//get image id
 		const id = req.query.id;
 		if (!id) {
+			console.log('id not found');
 			return res.status(404).send({
 				success: false,
 				message: 'Product image not found',
@@ -262,6 +264,7 @@ export const deleteProductImageController = async (req, res) => {
 			if (item._id.toString() === id.toString()) exist = index;
 		});
 		if (exist < 0) {
+			console.log('image not found');
 			return res.status(404).send({
 				success: false,
 				message: 'Image not found',
