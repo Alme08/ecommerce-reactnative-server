@@ -101,6 +101,7 @@ export const updateCategoryController = async (req, res) => {
 		}
 		//get new category
 		const { updatedCategory } = req.body;
+		console.log(updatedCategory, req.body);
 		//find product with category id
 		const products = await productModel.find({ category: req.params.id });
 		//update product category to undefined
