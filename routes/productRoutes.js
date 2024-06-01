@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+	changeActiveProductController,
 	createProductController,
 	deleteProductController,
 	deleteProductImageController,
@@ -33,6 +34,14 @@ router.put('/:id', isAuth, isAdmin, updateProductController);
 
 // UPDATE PRODUCT IMAGE
 router.put('/image/:id', isAuth, singleUpload, updateProductImageController);
+
+// CHANGE PRODUCT STATUS
+router.put(
+	'/:id/change-status',
+	isAuth,
+	isAdmin,
+	changeActiveProductController
+);
 
 // DELETE PRODUCT IMAGE
 router.delete(

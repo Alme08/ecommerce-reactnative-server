@@ -236,6 +236,40 @@ export const updateProductImageController = async (req, res) => {
 	}
 };
 
+export const changeActiveProductController = async (req, res) => {
+	try {
+		//find product
+		const product = await productModel.findById(req.params.id);
+		//validation
+		if (!product) {
+			return res.status(404).send({
+				success: false,
+				message: 'Product not found',
+			});
+		}
+		product.active = !product.active;
+		await product.save();
+		res.status(200).send({
+			success: true,
+			message: 'Product updated successfully',
+		});
+	} catch (error) {
+		console.log(error);
+		//Cast error || Object ID
+		if (error.name === 'CastError') {
+			return res.status(500).send({
+				success: false,
+				message: 'Invalid ID',
+			});
+		}
+		res.status(500).send({
+			success: false,
+			message: 'Error in updating product API',
+			error,
+		});
+	}
+};
+
 // DELETE PRODUCT IMAGE
 export const deleteProductImageController = async (req, res) => {
 	try {
