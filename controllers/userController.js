@@ -325,3 +325,33 @@ export const passwordResetController = async (req, res) => {
 		});
 	}
 };
+
+// update user
+export const updateUserController = async (req, res) => {
+	try {
+		const user = await userModel.findById(req.params.id);
+		const { name, address, city, country, phone, role } = req.body;
+		//validation + update
+		if (name) user.name = name;
+		if (address) user.address = address;
+		if (city) user.city = city;
+		if (country) user.country = country;
+		if (phone) user.phone = phone;
+		if (role) user.role = role;
+
+		//save user
+		await user.save();
+		res.status(200).send({
+			success: true,
+			message: 'Profile updated successfully',
+			user,
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).send({
+			success: false,
+			message: 'Error In update profile API',
+			error,
+		});
+	}
+};

@@ -9,6 +9,7 @@ import {
 	updatePasswordController,
 	updateProfileController,
 	updateProfilePicController,
+	updateUserController,
 } from '../controllers/userController.js';
 import { isAuth } from '../middlewares/authMiddleware.js';
 import { singleUpload } from '../middlewares/multer.js';
@@ -57,6 +58,9 @@ router.post(
 
 // FORGOT PASSWORD
 router.post('/reset-password', passwordResetController);
+
+// UPDATE USER
+router.put('/user-update/:id', isAdmin, updateUserController);
 
 //export
 export default router;
