@@ -166,18 +166,19 @@ export const getAllOrdersController = async (req, res) => {
 // CHANGE ORDER STATUS
 export const changeOrderStatusController = async (req, res) => {
 	try {
+		console.log(req.params.id, req.body.status);
 		//find order
 		const order = await orderModel.findById(req.params.id);
-		//validation
+		//validations
 		if (!order) {
 			return res.status(404).send({
 				success: false,
 				message: 'Order not found',
 			});
 		}
-		if (order.orderStatus === 'Processing') order.orderStatus = 'Shipped';
-		else if (order.orderStatus === 'Shipped') {
-			order.orderStatus = 'Delivered';
+		if (order.orderStatus === 'Procesando') order.orderStatus = 'Enviado';
+		else if (order.orderStatus === 'Enviado') {
+			order.orderStatus = 'Entregado';
 			order.deliveredAt = Date.now();
 		} else {
 			return res.status(500).send({
