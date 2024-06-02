@@ -45,10 +45,10 @@ const userSchema = new mongoose.Schema(
 					'https://res.cloudinary.com/djanluujt/image/upload/v1715559800/149071_cskhjj.png',
 			},
 		},
-		answer: {
-			type: String,
-			required: [true, 'Answer is required'],
-		},
+		// answer: {
+		// 	type: String,
+		// 	required: [true, 'Answer is required'],
+		// },
 		role: {
 			type: String,
 			default: 'user',

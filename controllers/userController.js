@@ -3,8 +3,7 @@ import cloudinary from 'cloudinary';
 import { getDataUri } from '../utils/features.js';
 export const registerController = async (req, res) => {
 	try {
-		const { name, email, password, address, city, country, phone, answer } =
-			req.body;
+		const { name, email, password, address, city, country, phone } = req.body;
 		if (
 			!name ||
 			!email ||
@@ -12,8 +11,7 @@ export const registerController = async (req, res) => {
 			!address ||
 			!city ||
 			!country ||
-			!phone ||
-			!answer
+			!phone
 		) {
 			return res.status(500).send({
 				success: false,
@@ -37,7 +35,6 @@ export const registerController = async (req, res) => {
 			city,
 			country,
 			phone,
-			answer,
 		});
 		res.status(201).send({
 			success: true,
@@ -297,22 +294,22 @@ export const updateProfilePicController = async (req, res) => {
 // FORGOT PASSWORD
 export const passwordResetController = async (req, res) => {
 	try {
-		// user get email || new password || answer
-		const { email, newPassword, answer } = req.body;
+		// user get email || new password
+		const { email, newPassword } = req.body;
 		// validation
-		if (!email || !newPassword || !answer) {
+		if (!email || !newPassword) {
 			return res.status(500).send({
 				success: false,
 				message: 'Please provide all fields',
 			});
 		}
 		// find user
-		const user = await userModel.findOne({ email, answer });
+		const user = await userModel.findOne({ email });
 		//validation
 		if (!user) {
 			return res.status(404).send({
 				success: false,
-				message: 'Invalid email or answer',
+				message: 'Invalid email',
 			});
 		}
 
