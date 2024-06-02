@@ -60,7 +60,7 @@ router.post(
 router.post('/reset-password', passwordResetController);
 
 // UPDATE USER
-router.put('/user-update/:id', isAdmin, updateUserController);
+router.put('/user-update/:id', updateUserController);
 
 //export
 export default router;
