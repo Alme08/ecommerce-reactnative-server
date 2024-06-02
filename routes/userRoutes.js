@@ -11,7 +11,7 @@ import {
 	updateProfilePicController,
 	updateUserController,
 } from '../controllers/userController.js';
-import { isAuth } from '../middlewares/authMiddleware.js';
+import { isAdmin, isAuth } from '../middlewares/authMiddleware.js';
 import { singleUpload } from '../middlewares/multer.js';
 import { rateLimit } from 'express-rate-limit';
 
