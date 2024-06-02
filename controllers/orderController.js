@@ -166,7 +166,6 @@ export const getAllOrdersController = async (req, res) => {
 // CHANGE ORDER STATUS
 export const changeOrderStatusController = async (req, res) => {
 	try {
-		console.log(req.params.id, req.body.status);
 		//find order
 		const order = await orderModel.findById(req.params.id);
 		//validations
