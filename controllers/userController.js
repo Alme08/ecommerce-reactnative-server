@@ -74,6 +74,12 @@ export const loginController = async (req, res) => {
 				message: 'User not found',
 			});
 		}
+		if (user.active === false) {
+			return res.status(500).send({
+				success: false,
+				message: 'User is not active',
+			});
+		}
 		//password validation
 		const isMatch = await user.comparePassword(password);
 		if (!isMatch) {
