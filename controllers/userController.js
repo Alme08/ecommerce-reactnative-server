@@ -361,3 +361,38 @@ export const updateUserController = async (req, res) => {
 		});
 	}
 };
+
+// CHANGE ACTIVE STATUS
+export const changeActiveUserController = async (req, res) => {
+	try {
+		//find user
+		const user = await userModel.findById(req.params.id);
+		//validation
+		if (!user) {
+			return res.status(404).send({
+				success: false,
+				message: 'User not found',
+			});
+		}
+		user.active = !user.active;
+		await user.save();
+		res.status(200).send({
+			success: true,
+			message: 'User updated successfully',
+		});
+	} catch (error) {
+		console.log(error);
+		//Cast error || Object ID
+		if (error.name === 'CastError') {
+			return res.status(500).send({
+				success: false,
+				message: 'Invalid ID',
+			});
+		}
+		res.status(500).send({
+			success: false,
+			message: 'Error in updating user API',
+			error,
+		});
+	}
+};

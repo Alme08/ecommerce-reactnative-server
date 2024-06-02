@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+	changeActiveUserController,
 	getAllUsersController,
 	getUserProfileController,
 	loginController,
@@ -61,6 +62,9 @@ router.post('/reset-password', passwordResetController);
 
 // UPDATE USER
 router.put('/user-update/:id', updateUserController);
+
+// CHANGE STATUS USER
+router.put('/:id/change-status', changeActiveUserController);
 
 //export
 export default router;
