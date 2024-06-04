@@ -30,10 +30,6 @@ const orderSchema = new mongoose.Schema(
 					type: Number,
 					required: [true, 'Please enter product quantity'],
 				},
-				image: {
-					type: String,
-					required: [true, 'Please enter product image'],
-				},
 				product: {
 					type: mongoose.Schema.Types.ObjectId,
 					required: true,
