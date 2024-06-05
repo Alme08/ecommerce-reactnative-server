@@ -5,6 +5,7 @@ import { stripe } from '../server.js';
 // CREATE ORDER
 export const createOrderController = async (req, res) => {
 	try {
+		console.log(req.body);
 		const {
 			shippingInfo,
 			orderItems,
@@ -123,11 +124,11 @@ export const paymentController = async (req, res) => {
 				message: 'Total Amount is required',
 			});
 		}
-		console.log(totalAmount);
 		const { client_secret } = await stripe.paymentIntents.create({
 			amount: Number(totalAmount) * 100,
 			currency: 'usd',
 		});
+		console.log(client_secret);
 		res.status(200).send({
 			success: true,
 			client_secret,
