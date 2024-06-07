@@ -1,6 +1,7 @@
 import userModel from '../models/userModel.js';
 import cloudinary from 'cloudinary';
 import { getDataUri } from '../utils/features.js';
+import productModel from '../models/productModel.js';
 export const registerController = async (req, res) => {
 	try {
 		const { name, email, password, address, city, country, phone } = req.body;
