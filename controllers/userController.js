@@ -277,6 +277,12 @@ export const updateProfilePicController = async (req, res) => {
 		};
 		//save func
 		await user.save();
+
+		// Update profile picture in all reviews by the user
+		const products = await productModel.updateMany(
+			{ 'reviews.user': user._id },
+			{ $set: { 'reviews.$.image': user.profilePic } }
+		);
 		res.status(200).send({
 			success: true,
 			message: 'profile pic updated successfully',

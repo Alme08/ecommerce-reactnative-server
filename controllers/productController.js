@@ -386,6 +386,7 @@ export const productReviewController = async (req, res) => {
 		//review object
 		const review = {
 			name: req.user.name,
+			image: req.user.profilePic,
 			rating: Number(rating),
 			comment,
 			user: req.user._id,
